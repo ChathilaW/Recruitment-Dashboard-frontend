@@ -1,19 +1,28 @@
 :root {
   --sidebar-bg: #1A1A24;
-  --sidebar-icon-color: #6B7280; /* Gray-500 */
-  --sidebar-icon-hover: #D1D5DB; /* Gray-300 */
+  --sidebar-icon-color: #9CA3AF;
+  --sidebar-icon-hover: #FFFFFF;
   --sidebar-active-bg: #2D2D44;
   --sidebar-active-color: #FFFFFF;
-  --sidebar-notification: #F97316; /* Orange-500 */
-  
+  --sidebar-notification: #F97316;
+
+  --header-bg: #22222E;
   --main-bg: #F5F6FA;
-  
-  /* Additional UI Variables */
-  --text-primary: #111827;
+  --text-primary: #1F2937;
   --text-secondary: #6B7280;
+  --text-dark: #FFFFFF;
   --border-color: #E5E7EB;
+  
+  --column-bg: #F9FAFB;
+  --card-bg: #FFFFFF;
+  
   --primary-accent: #0D9488;
   --primary-hover: #0F766E;
+
+  --tag-orange: #F97316;
+  --tag-purple: #A855F7;
+  --tag-blue: #3B82F6;
+  --tag-green: #22C55E;
 }
 
 html, body {
@@ -21,6 +30,7 @@ html, body {
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--main-bg);
+  color: var(--text-primary);
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -33,4 +43,17 @@ html, body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
