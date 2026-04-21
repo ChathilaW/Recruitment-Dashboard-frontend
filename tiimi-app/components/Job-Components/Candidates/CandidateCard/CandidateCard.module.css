@@ -79,6 +79,19 @@
   padding: 0;
 }
 
+.ratingInput {
+  width: 48px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.125rem 0.25rem;
+  font-size: 0.75rem;
+  outline: none;
+}
+
+.ratingInput:focus {
+  border-color: var(--primary-accent);
+}
+
 .actions {
   display: flex;
   align-items: center;
