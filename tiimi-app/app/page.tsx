@@ -10,6 +10,9 @@ import KanbanBoard from "@/components/Job-Components/Candidates/KanbanBoard/Kanb
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Candidates");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dateFilter, setDateFilter] = useState("All");
+  const [scoreFilter, setScoreFilter] = useState("All");
 
   return (
     <div className={styles.page}>
@@ -19,8 +22,19 @@ export default function Home() {
         <JobHeader activeTab={activeTab} onTabChange={setActiveTab} />
         {activeTab === "Candidates" ? (
           <>
-            <FilterBar />
-            <KanbanBoard />
+            <FilterBar 
+              searchTerm={searchTerm} 
+              onSearchChange={setSearchTerm} 
+              dateFilter={dateFilter}
+              onDateChange={setDateFilter}
+              scoreFilter={scoreFilter}
+              onScoreChange={setScoreFilter}
+            />
+            <KanbanBoard 
+              searchTerm={searchTerm} 
+              dateFilter={dateFilter}
+              scoreFilter={scoreFilter}
+            />
           </>
         ) : (
           <div style={{ padding: "2rem", textAlign: "center", color: "var(--text-secondary)" }}>
