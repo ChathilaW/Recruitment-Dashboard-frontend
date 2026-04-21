@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
+import JobHeader from "../components/JobHeader/JobHeader";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <Sidebar />
       <Header />
       <main className={styles.mainContent}>
-        {/* Main content will go here later */}
+        <JobHeader />
       </main>
     </div>
   );

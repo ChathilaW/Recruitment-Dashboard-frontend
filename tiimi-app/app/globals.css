@@ -7,6 +7,13 @@
   --sidebar-notification: #F97316; /* Orange-500 */
   
   --main-bg: #F5F6FA;
+  
+  /* Additional UI Variables */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --primary-accent: #0D9488;
+  --primary-hover: #0F766E;
 }
 
 html, body {
