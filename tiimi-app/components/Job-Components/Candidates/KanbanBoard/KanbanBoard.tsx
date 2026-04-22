@@ -19,6 +19,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
 }) => {
   const [boardData, setBoardData] = useState(pipelineData);
   const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   const activeCandidate = selectedCandidateId 
     ? boardData.flatMap(col => col.candidates).find(c => c.id === selectedCandidateId)
@@ -36,6 +37,22 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
       }
       return newBoard;
     });
+  };
+
+  const handleRemoveCandidate = (candidateId: string) => {
+    setBoardData(prev => {
+      const newBoard = JSON.parse(JSON.stringify(prev));
+      for (const col of newBoard) {
+        const index = col.candidates.findIndex((c: any) => c.id === candidateId);
+        if (index !== -1) {
+          col.candidates.splice(index, 1);
+          col.count = col.candidates.length;
+          break;
+        }
+      }
+      return newBoard;
+    });
+    setConfirmDeleteId(null);
   };
 
   const handleMoveCandidate = (candidateId: string, sourceColId: string, destColId: string) => {
@@ -99,6 +116,9 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
             onMoveCandidate={handleMoveCandidate} 
             onSelectCandidate={(c) => setSelectedCandidateId(c.id)}
             onUpdateRating={handleUpdateRating}
+            onRemoveCandidate={handleRemoveCandidate}
+            confirmDeleteId={confirmDeleteId}
+            onSetConfirmDeleteId={setConfirmDeleteId}
           />
         ))}
       </div>

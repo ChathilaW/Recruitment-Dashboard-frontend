@@ -12,13 +12,19 @@ interface KanbanColumnProps {
   onMoveCandidate: (candidateId: string, sourceColId: string, destColId: string) => void;
   onSelectCandidate: (candidate: Candidate) => void;
   onUpdateRating: (candidateId: string, newRating: number) => void;
+  onRemoveCandidate: (candidateId: string) => void;
+  confirmDeleteId: string | null;
+  onSetConfirmDeleteId: (id: string | null) => void;
 }
 
 const KanbanColumn: React.FC<KanbanColumnProps> = ({ 
   column, 
   onMoveCandidate, 
   onSelectCandidate, 
-  onUpdateRating
+  onUpdateRating,
+  onRemoveCandidate,
+  confirmDeleteId,
+  onSetConfirmDeleteId
 }) => {
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault(); // allow drop
@@ -59,6 +65,10 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
             columnId={column.id} 
             onClick={() => onSelectCandidate(candidate)}
             onUpdateRating={onUpdateRating}
+            onRemoveCandidate={onRemoveCandidate}
+            isConfirmingDelete={confirmDeleteId === candidate.id}
+            onSetConfirmDelete={() => onSetConfirmDeleteId(candidate.id)}
+            onCancelConfirmDelete={() => onSetConfirmDeleteId(null)}
           />
         ))}
       </div>

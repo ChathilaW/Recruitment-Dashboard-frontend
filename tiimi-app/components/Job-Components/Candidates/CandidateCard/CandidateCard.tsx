@@ -13,13 +13,21 @@ interface CandidateCardProps {
   columnId: string;
   onClick: () => void;
   onUpdateRating: (candidateId: string, newRating: number) => void;
+  onRemoveCandidate: (candidateId: string) => void;
+  isConfirmingDelete: boolean;
+  onSetConfirmDelete: () => void;
+  onCancelConfirmDelete: () => void;
 }
 
 const CandidateCard: React.FC<CandidateCardProps> = ({ 
   candidate, 
   columnId, 
   onClick, 
-  onUpdateRating
+  onUpdateRating,
+  onRemoveCandidate,
+  isConfirmingDelete,
+  onSetConfirmDelete,
+  onCancelConfirmDelete
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -127,14 +135,44 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         )}
         
         <div className={styles.actions}>
-          {candidate.isReferred && (
+          {candidate.isReferred && !isConfirmingDelete && (
             <div className={styles.referredTag}>
               <UserPlusIcon className={styles.iconTiny} /> Referred
             </div>
           )}
-          <button className={styles.moreBtn}>
-            <EllipsisHorizontalIcon className={styles.iconSmall} />
-          </button>
+          {isConfirmingDelete ? (
+            <div className={styles.confirmActions}>
+              <button 
+                className={styles.confirmYes} 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRemoveCandidate(candidate.id);
+                }}
+              >
+                Delete
+              </button>
+              <button 
+                className={styles.confirmNo} 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onCancelConfirmDelete();
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button 
+              className={styles.moreBtn} 
+              onClick={(e) => {
+                e.stopPropagation();
+                onSetConfirmDelete();
+              }}
+              title="Remove Candidate"
+            >
+              <EllipsisHorizontalIcon className={styles.iconSmall} />
+            </button>
+          )}
         </div>
       </div>
     </div>
