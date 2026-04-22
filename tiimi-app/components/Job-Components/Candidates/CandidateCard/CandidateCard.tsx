@@ -169,7 +169,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                   onRemoveCandidate(candidate.id); // Execute the deletion
                 }}
               >
-                Delete
+                Remove
               </button>
               <button 
                 className={styles.confirmNo} 
